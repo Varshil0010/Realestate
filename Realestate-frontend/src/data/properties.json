@@ -1,37 +1,49 @@
 [
     {
       "Id": 1,
+      "SellRent": 1,
       "Name": "Semi-Detached",
       "Type": "House",
-      "Price": 12000
+      "Price": 699999,
+      "Image": "image-1"
     },
     {
       "Id": 2,
+      "SellRent": 2,
       "Name": "Fountainhead",
       "Type": "Appartment",
-      "Price": 20000
+      "Price": 2000,
+      "Image": "image-6"
     },
     {
       "Id": 3,
+      "SellRent": 1,
       "Name": "Marco Home",
       "Type": "House",
-      "Price": 14300
+      "Price": 1000000,
+      "Image": "image-4"
     },
     {
       "Id": 4,
+      "SellRent": 1,
       "Name": "Dawson house",
       "Type": "House",
-      "Price": 18000
+      "Price": 750000,
+      "Image": "image-2"
     },
     {
       "Id": 5,
+      "SellRent": 2,
       "Name": "Park Avenue",
       "Type": "Appartment",
-      "Price": 17000
+      "Price": 2200,
+      "Image": "image-5"
     },{
       "Id": 6,
+      "SellRent": 2,
       "Name": "Wilson Avenue",
       "Type": "House",
-      "Price": 2600
+      "Price": 3000,
+      "Image": "image-3"
     }
   ]
