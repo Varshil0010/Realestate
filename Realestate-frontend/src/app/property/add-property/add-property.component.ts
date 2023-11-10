@@ -208,6 +208,7 @@ furnishTypes: Array<string> =['Fully', 'Semi', 'Unfurnished']
   }
 
   mapProperty(): void{
+    this.property.Id = this.housingService.newPropID();
     this.property.SellRent = +this.SellRent.value;
     this.property.Bedroom = this.Bedroom.value;
     this.property.PType = this.PType.value;
