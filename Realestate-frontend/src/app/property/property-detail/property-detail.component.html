@@ -8,7 +8,7 @@
       <div class="card-body">
         <h1 class="card-title">{{property.Name}}</h1>
         <div>
-          <strong>{{property.Bedroom}} BHK {{property.PType}} @ ${{property.Price}}</strong>
+          <strong>{{property.Bedroom}} BHK {{property.PType}} for ${{property.Price}}</strong>
         </div>
         <div>
           <strong>in {{property.City}}</strong>
@@ -38,7 +38,7 @@
   </div>
 
   <div class="col-sm-8 p-0">
-    <div class="tab-panel">
+    <div class="tab-panel p-3">
       <tabset class="member-tabset">
         <tab heading="Overview">
           <h1>Overview</h1>
@@ -94,7 +94,7 @@
         </div>
         </tab>
         <tab heading="Images">
-          <h1>Photos</h1>
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
         </tab>
         <tab heading="Contact">
           <h1>Contact Detail</h1>
