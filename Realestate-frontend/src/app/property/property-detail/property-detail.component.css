@@ -4,6 +4,8 @@
 
 .card img{
     padding: 10px;
+    height: 240px;
+    width: 440px;
 }
 
 .ngx-gallery { display: inline-block; margin-bottom: 20px; }
