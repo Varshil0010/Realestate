@@ -40,6 +40,9 @@ furnishTypes: Array<string> =['Fully', 'Semi', 'Unfurnished']
 
   ngOnInit() {
     this.CreateAddPropertyForm();
+    this.housingService.getAllCities().subscribe(data =>{
+      console.log(data);
+    })
   }
 
   CreateAddPropertyForm(){
