@@ -21,6 +21,7 @@ property = new Property();
 
 propertyTypes: Array<string> =['House', 'Appartment', 'Duplex']
 furnishTypes: Array<string> =['Fully', 'Semi', 'Unfurnished']
+cityList: string[];
 
   propertyView: IPropertyBase = {
     Id: null!,
@@ -35,12 +36,13 @@ furnishTypes: Array<string> =['Fully', 'Semi', 'Unfurnished']
     RTM: null!
   };
 
-  constructor(private fb: FormBuilder, private router: Router, 
+  constructor(private fb: FormBuilder, private router: Router,
               private housingService: HousingService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.CreateAddPropertyForm();
     this.housingService.getAllCities().subscribe(data =>{
+      this.cityList = data;
       console.log(data);
     })
   }
@@ -191,7 +193,7 @@ furnishTypes: Array<string> =['Fully', 'Semi', 'Unfurnished']
 
   onSubmit(){
     this.NextClicked = true;
-       
+
     if(this.allTabsValid()){
       this.mapProperty();
       this.housingService.addProperty(this.property);

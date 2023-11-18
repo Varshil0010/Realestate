@@ -13,29 +13,22 @@
 
                 <div class="form-group col-12">
                   <p>I want to</p>
-                  <div class="btn-group" btnRadioGroup
-                    formControlName="SellRent">
-                    <label class="btn btn-outline-primary"
-                      style="margin-right: 10px;"
-                      btnRadio=1 tabindex="0" role="button" name="SellRent">Sell</label>
-                    <label class="btn btn-outline-primary"
-                      btnRadio=2 tabindex="0" role="button" name="SellRent">Rent</label>
+                  <div class="btn-group" btnRadioGroup formControlName="SellRent">
+                    <label class="btn btn-outline-primary" style="margin-right: 10px;" btnRadio=1 tabindex="0"
+                      role="button" name="SellRent">Sell</label>
+                    <label class="btn btn-outline-primary" btnRadio=2 tabindex="0" role="button"
+                      name="SellRent">Rent</label>
                   </div>
-                  <div class="error-block"
-                    *ngIf="SellRent.invalid && NextClicked">
+                  <div class="error-block" *ngIf="SellRent.invalid && NextClicked">
                     Please select sell or rent.
                   </div>
                 </div>
 
                 <div class="form-group col-12" style="margin-top: 10px;">
                   <p>Bedroom</p>
-                  <div class="btn-group" btnRadioGroup
-                    [(ngModel)]="propertyView.Bedroom" formControlName="Bedroom">
-                    <label
-                      *ngFor="let Bedroom of [1,2,3,4]"
-                      class="btn btn-outline-primary mr-2"
-                      style="margin-right: 10px;"
-                      [btnRadio]="Bedroom" tabindex="0" role="button"
+                  <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.Bedroom" formControlName="Bedroom">
+                    <label *ngFor="let Bedroom of [1,2,3,4]" class="btn btn-outline-primary mr-2"
+                      style="margin-right: 10px;" [btnRadio]="Bedroom" tabindex="0" role="button"
                       name="Bedroom">{{Bedroom}}</label>
                   </div>
                   <div class="error-block" *ngIf="Bedroom.invalid && NextClicked">
@@ -45,13 +38,9 @@
 
                 <div class="form-group col-12" style="margin-top: 10px;">
                   <p>Property Type</p>
-                  <div class="btn-group" btnRadioGroup formControlName="PType"
-                    [(ngModel)]="propertyView.PType">
-                    <label
-                      *ngFor="let ptype of propertyTypes"
-                      class="btn btn-outline-primary mr-2"
-                      style="margin-right: 10px;"
-                      [btnRadio]="ptype" tabindex="0" role="button"
+                  <div class="btn-group" btnRadioGroup formControlName="PType" [(ngModel)]="propertyView.PType">
+                    <label *ngFor="let ptype of propertyTypes" class="btn btn-outline-primary mr-2"
+                      style="margin-right: 10px;" [btnRadio]="ptype" tabindex="0" role="button"
                       name="ptype">{{ptype}}</label>
                   </div>
                   <div class="error-block" *ngIf="PType.invalid && NextClicked">
@@ -61,13 +50,9 @@
 
                 <div class="form-group col-12" style="margin-top: 10px;">
                   <p>Furnishing Type</p>
-                  <div class="btn-group" btnRadioGroup
-                    [(ngModel)]="propertyView.FType" formControlName="FType">
-                    <label
-                      *ngFor="let ftype of furnishTypes"
-                      class="btn btn-outline-primary mr-2"
-                      style="margin-right: 10px;"
-                      [btnRadio]="ftype" tabindex="0" role="button"
+                  <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.FType" formControlName="FType">
+                    <label *ngFor="let ftype of furnishTypes" class="btn btn-outline-primary mr-2"
+                      style="margin-right: 10px;" [btnRadio]="ftype" tabindex="0" role="button"
                       name="Bedroom">{{ftype}}</label>
                   </div>
                   <div class="error-block" *ngIf="FType.invalid && NextClicked">
@@ -77,29 +62,27 @@
 
                 <div class="form-group col-12">
                   <label>in Building/Society/Project</label>
-                  <input type="text" class="form-control"
-                    ngModel
-                    formControlName="Name"
+                  <input type="text" class="form-control" ngModel formControlName="Name"
                     [(ngModel)]="propertyView.Name">
-                  <div class="error-block"
-                    *ngIf="Name.invalid && (NextClicked || Name.touched)">
+                  <div class="error-block" *ngIf="Name.invalid && (NextClicked || Name.touched)">
                     Please provide building, society or project name
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <label for="city">City</label>
-                  <input type="text" class="form-control"
-                    [(ngModel)]="propertyView.City" formControlName="City" style="margin-top: 10px;">
-                    <div class="error-block"
-                    *ngIf="City.invalid && (NextClicked || City.touched)">
+                  <select class="form-control" [(ngModel)]="propertyView.City" formControlName="City"
+                    style="margin-top: 10px;">
+                    <option value="">--Select City--</option>
+                    <option *ngFor="let city of cityList" value="{{city}}">{{city}}</option>
+                  </select>
+                  <div class="error-block" *ngIf="City.invalid && (NextClicked || City.touched)">
                     Please select city
                   </div>
                 </div>
 
                 <div class="form-group col-12">
-                  <button type="button" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;"
+                  <button type="button" class="btn btn-primary" style="margin-top: 20px; width: 800px;"
                     (click)="selectTab(1, BasicInfo.valid)">Next</button>
                 </div>
               </tab>
@@ -108,11 +91,8 @@
                 <div class="form-group col-12">
                   <label *ngIf="SellRent.value==1">Price (in CAD)</label>
                   <label *ngIf="SellRent.value==2">Rent (in CAD)</label>
-                  <input type="text" class="form-control"
-                  formControlName="Price"
-                  [(ngModel)]="propertyView.Price">
-                  <div class="error-block"
-                  *ngIf="Price.invalid && (NextClicked || Price.touched)">
+                  <input type="text" class="form-control" formControlName="Price" [(ngModel)]="propertyView.Price">
+                  <div class="error-block" *ngIf="Price.invalid && (NextClicked || Price.touched)">
                     Please enter
                     <span *ngIf="SellRent.value==1;else ShowRent">price</span>
                     <ng-template #ShowRent>rent</ng-template>
@@ -131,13 +111,11 @@
 
                 <div class="form-group col-12">
                   <label>Built Area (in Sqr Feet)</label>
-                  <input type="text" class="form-control"
-                    [(ngModel)]="propertyView.BuiltArea"
+                  <input type="text" class="form-control" [(ngModel)]="propertyView.BuiltArea"
                     formControlName="BuiltArea">
-                    <div class="error-block"
-                    *ngIf="BuiltArea.invalid && NextClicked">
-                      Please enter built up area
-                    </div>
+                  <div class="error-block" *ngIf="BuiltArea.invalid && NextClicked">
+                    Please enter built up area
+                  </div>
                 </div>
 
                 <div class="form-group col-12">
@@ -146,11 +124,9 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <button type="button" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;"
+                  <button type="button" class="btn btn-primary" style="margin-top: 20px; width: 800px;"
                     (click)="selectTab(2, PriceInfo.valid)">Next</button>
-                  <button type="button" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;"
+                  <button type="button" class="btn btn-primary" style="margin-top: 20px; width: 800px;"
                     (click)="selectTab(0, PriceInfo.valid)">Back</button>
                 </div>
               </tab>
@@ -169,8 +145,7 @@
                 <div class="form-group col-12">
                   <label>Address</label>
                   <input type="text" class="form-control" formControlName="Address">
-                  <div class="error-block"
-                  *ngIf="Address.invalid && (NextClicked || Address.touched)">
+                  <div class="error-block" *ngIf="Address.invalid && (NextClicked || Address.touched)">
                     Please select address
                   </div>
                 </div>
@@ -181,11 +156,9 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <button type="button" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;"
+                  <button type="button" class="btn btn-primary" style="margin-top: 20px; width: 800px;"
                     (click)="selectTab(3, AddressInfo.valid)">Next</button>
-                  <button type="button" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;"
+                  <button type="button" class="btn btn-primary" style="margin-top: 20px; width: 800px;"
                     (click)="selectTab(1 , AddressInfo.valid)">Back</button>
                 </div>
               </tab>
@@ -193,14 +166,10 @@
               <tab heading="Other Details" formGroupName="OtherInfo">
                 <div class="form-group col-12">
                   <p>Ready to Move</p>
-                  <div class="btn-group" btnRadioGroup
-                  formControlName="RTM">
-                    <label class="btn btn-outline-primary mr-2"
-                      btnRadio=1 tabindex="0" role="button"
-                      name="RTM">Yes
+                  <div class="btn-group" btnRadioGroup formControlName="RTM">
+                    <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button" name="RTM">Yes
                     </label>
-                    <label class="btn btn-outline-primary"
-                      btnRadio=2  tabindex="0" role="button" name="RTM">No
+                    <label class="btn btn-outline-primary" btnRadio=2 tabindex="0" role="button" name="RTM">No
                     </label>
                   </div>
                   <div class="error-block" *ngIf="RTM.invalid && NextClicked">
@@ -208,26 +177,16 @@
                   </div>
                 </div>
 
-                <div
-                  *ngIf="RTM.value==2"
-                  class="form-group col-6">
+                <div *ngIf="RTM.value==2" class="form-group col-6">
                   <label>Possession/Avaialble From</label>
-                  <input type="text"
-                  class="form-control"
-                  formControlName="PossessionOn"
-                  bsDatepicker
-                  [bsConfig]="{containerClass: 'theme-dark-blue',
+                  <input type="text" class="form-control" formControlName="PossessionOn" bsDatepicker [bsConfig]="{containerClass: 'theme-dark-blue',
                   dateInputFormat: 'DD-MM-YYYY'}">
                 </div>
 
 
-                <div
-                *ngIf="RTM.value==1"
-                class="form-group col-3">
+                <div *ngIf="RTM.value==1" class="form-group col-3">
                   <label>Age of Property</label>
-                  <input type="text"
-                  formControlName="AOP"
-                  class="form-control">
+                  <input type="text" formControlName="AOP" class="form-control">
                 </div>
 
                 <!-- <div class="form-group col-12">
@@ -237,16 +196,13 @@
 
                 <div class="form-group col-12">
                   <label>Description</label>
-                  <textarea type="text" class="form-control" name="Description"
-                    rows="6"></textarea>
+                  <textarea type="text" class="form-control" name="Description" rows="6"></textarea>
                 </div>
 
                 <div class="form-group col-12">
-                  <button type="button" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;"
+                  <button type="button" class="btn btn-primary" style="margin-top: 20px; width: 800px;"
                     (click)="selectTab(4, OtherInfo.valid)">Next</button>
-                  <button type="button" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;"
+                  <button type="button" class="btn btn-primary" style="margin-top: 20px; width: 800px;"
                     (click)="selectTab(2, OtherInfo.valid)">Back</button>
                 </div>
               </tab>
@@ -261,13 +217,10 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <button type="button" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;"
+                  <button type="button" class="btn btn-primary" style="margin-top: 20px; width: 800px;"
                     (click)="selectTab(3, true)">Back</button>
-                  <button type="reset" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;">Cancle</button>
-                  <button type="submit" class="btn btn-primary"
-                    style="margin-top: 20px; width: 800px;">Save</button>
+                  <button type="reset" class="btn btn-primary" style="margin-top: 20px; width: 800px;">Cancle</button>
+                  <button type="submit" class="btn btn-primary" style="margin-top: 20px; width: 800px;">Save</button>
                 </div>
               </tab>
             </tabset>
