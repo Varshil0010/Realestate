@@ -74,7 +74,7 @@
                   <select class="form-control" [(ngModel)]="propertyView.City" formControlName="City"
                     style="margin-top: 10px;">
                     <option value="">--Select City--</option>
-                    <option *ngFor="let city of cityList" value="{{city}}">{{city}}</option>
+                    <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
                   </select>
                   <div class="error-block" *ngIf="City.invalid && (NextClicked || City.touched)">
                     Please select city

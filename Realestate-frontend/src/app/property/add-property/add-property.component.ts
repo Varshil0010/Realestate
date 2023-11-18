@@ -21,7 +21,7 @@ property = new Property();
 
 propertyTypes: Array<string> =['House', 'Appartment', 'Duplex']
 furnishTypes: Array<string> =['Fully', 'Semi', 'Unfurnished']
-cityList: string[];
+cityList: any[];
 
   propertyView: IPropertyBase = {
     Id: null!,
