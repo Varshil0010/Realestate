@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
+using WebAPI.Data.Repo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 
