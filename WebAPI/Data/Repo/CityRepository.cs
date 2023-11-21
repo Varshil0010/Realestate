@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using WebAPI.DTOS;
+using WebAPI.Interfaces;
 using WebAPI.Models;
 
 namespace WebAPI.Data.Repo
@@ -16,6 +18,12 @@ namespace WebAPI.Data.Repo
             dataContext.Cities.AddAsync(city);
         }
 
+        public void AddCity(CityDTO city)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public void DeleteCity(int CityId)
         {
             var city = dataContext.Cities.Find(CityId);
@@ -25,11 +33,6 @@ namespace WebAPI.Data.Repo
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {
             return await dataContext.Cities.ToListAsync();
-        }
-
-        public async Task<bool> SaveAsync()
-        {
-            return await dataContext.SaveChangesAsync() > 0;
         }
 
     }
