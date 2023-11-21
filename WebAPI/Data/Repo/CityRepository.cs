@@ -18,17 +18,17 @@ namespace WebAPI.Data.Repo
             dataContext.Cities.AddAsync(city);
         }
 
-        public void AddCity(CityDTO city)
-        {
-            throw new NotImplementedException();
-        }
-
-
         public void DeleteCity(int CityId)
         {
             var city = dataContext.Cities.Find(CityId);
             dataContext.Cities.Remove(city);
         }
+
+        public async Task<City> FindCity(int id)
+        {
+            return await dataContext.Cities.FindAsync(id);
+        }
+
 
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {

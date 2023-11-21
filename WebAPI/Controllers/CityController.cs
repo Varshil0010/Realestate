@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
@@ -41,12 +42,49 @@ namespace WebAPI.Controllers
         {
             var city = new City{
                 Name = cityDTO.Name,
+                Country = cityDTO.Country,
                 LastUpdateBy = 1,
                 LastUpdateOn = DateTime.Now
             };
             uow.CityRepository.AddCity(city);
             await uow.SaveAsync();
             return StatusCode(201);
+        }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateCity(int id, CityDTO cityDTO)
+        {
+            var city = await uow.CityRepository.FindCity(id);
+            city.LastUpdateBy = 1;
+            city.LastUpdateOn = DateTime.Now;
+            mapper.Map(cityDTO, city);
+            await uow.SaveAsync();
+
+            return StatusCode(200);
+        }
+
+        [HttpPut("updateCityName/{id}")]
+        public async Task<IActionResult> UpdateCity(int id, CityUpdateDTO cityUpdateDTO)
+        {
+            var city = await uow.CityRepository.FindCity(id);
+            city.LastUpdateBy = 1;
+            city.LastUpdateOn = DateTime.Now;
+            mapper.Map(cityUpdateDTO, city);
+            await uow.SaveAsync();
+
+            return StatusCode(200);
+        }
+
+        [HttpPatch("update/{id}")]
+        public async Task<IActionResult> UpdateCityPatch(int id, JsonPatchDocument<City> cityPatch)
+        {
+            var city = await uow.CityRepository.FindCity(id);
+            city.LastUpdateBy = 1;
+            city.LastUpdateOn = DateTime.Now;
+            cityPatch.ApplyTo(city, ModelState);
+            await uow.SaveAsync();
+
+            return StatusCode(200);
         }
         
         [HttpDelete("delete/{id}")]
