@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
@@ -18,10 +19,12 @@ namespace WebAPI.Controllers
     public class CityController : ControllerBase
     {
         private readonly IUnitOfWork uow;
+        private readonly IMapper mapper;
 
-        public CityController(IUnitOfWork uow)
+        public CityController(IUnitOfWork uow, IMapper mapper)
         {
             this.uow = uow;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -29,12 +32,7 @@ namespace WebAPI.Controllers
         {
             var cities = await uow.CityRepository.GetCitiesAsync();
 
-            var citiesDto = from c in cities
-                select new CityDTO()
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                };
+            var citiesDto = mapper.Map<IEnumerable<CityDTO>>(cities);
             return Ok(citiesDto);
         }
 
