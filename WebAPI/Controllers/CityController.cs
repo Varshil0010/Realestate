@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize]
     public class CityController : BaseController
     {
         private readonly IUnitOfWork uow;
@@ -27,9 +29,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+
+        [AllowAnonymous]
         public async Task<IActionResult> GetCities()
         {
-            throw new UnauthorizedAccessException();
+            // throw new UnauthorizedAccessException();
             var cities = await uow.CityRepository.GetCitiesAsync();
 
             var citiesDto = mapper.Map<IEnumerable<CityDTO>>(cities);
