@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "realestate-2023v"
+  },
+  "targets": {
+    "realestate-2023v": {
+      "hosting": {
+        "Realestate-frontend": [
+          "realestate-2023v"
+        ]
+      }
+    }
+  }
+}

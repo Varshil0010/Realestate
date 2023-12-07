@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/ad356028-ee0e-4270-9f78-eac68661a411/resourceGroups/Realestate/providers/Microsoft.Web/sites/Realesstate",
+    "appService.deploySubpath": "WebAPI\\bin\\Release\\net7.0\\publish"
+}
