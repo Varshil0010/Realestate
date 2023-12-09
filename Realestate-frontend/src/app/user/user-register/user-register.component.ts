@@ -81,9 +81,6 @@ export class UserRegisterComponent implements OnInit {
       this.authService.registerUser(this.userData()).subscribe(() => {
         this.registerationForm.reset();
         this.alertify.success("Congrats, you are successfully registred");
-      }, error => {
-        console.log(error);
-        this.alertify.error(error.error);
       }
       );
 
