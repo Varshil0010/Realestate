@@ -4,6 +4,7 @@ namespace WebAPI.Interfaces
     {
          ICityRepository CityRepository {get;}  
          IUserRepository UserRepository {get;}
+         IPropertyRepository propertyRepository {get;}
          Task<bool> SaveAsync();
     }
 }
