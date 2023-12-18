@@ -2,21 +2,21 @@
   <div class="col-sm-4 p-0">
     <div class="card" style="height: 100px;">
       <div class="card-img-wrapper">
-        <img *ngIf="property.Image" class="card-img-top" src="../../../assets/images/{{property.Image}}.jpg"/>
-        <img *ngIf="!property.Image" class="card-img-top" src="../../../assets/images/house.jpg"/>
+        <img *ngIf="property.image" class="card-img-top" src="../../../assets/images/{{property.image}}.jpg"/>
+        <img *ngIf="!property.image" class="card-img-top" src="../../../assets/images/house.jpg"/>
       </div>
       <div class="card-body">
-        <h1 class="card-title">{{property.Name}}</h1>
+        <h1 class="card-title">{{property.name}}</h1>
         <div>
-          <strong>{{property.Bedroom}} BHK {{property.PType}} for ${{property.Price}}</strong>
+          <strong>{{property.bhk}} BHK {{property.propertyType}} for ${{property.price}}</strong>
         </div>
         <div>
-          <strong>in {{property.City}}</strong>
+          <strong>in {{property.city}}</strong>
         </div>
         <hr />
         <div>
           <strong>Build Area: </strong>
-          {{property.BuiltArea}} Sqft
+          {{property.builtArea}} Sqft
         </div>
 
         <div>
@@ -25,7 +25,7 @@
         </div>
         <div>
           <strong>Furnishing Type: </strong>
-          {{property.FType}}
+          {{property.furnishingType}}
         </div>
       </div>
       <div class="card-footer">
@@ -46,7 +46,7 @@
               <div class="col-sm-6">
                   <div class="heading">
                       <strong>Project Name</strong>
-                      <p>{{property.Name}}</p>
+                      <p>{{property.name}}</p>
                   </div>
 
                   <div class="heading">
@@ -89,7 +89,7 @@
             <div class="heading">
                 <strong>{{property.Address}}</strong><br/>
                 <strong>{{property.Address2}}</strong><br/>
-                <strong>{{property.City}}</strong>
+                <strong>{{property.city}}</strong>
             </div>
         </div>
         </tab>

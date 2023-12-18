@@ -26,7 +26,7 @@
 
                 <div class="form-group col-12" style="margin-top: 10px;">
                   <p>Bedroom</p>
-                  <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.Bedroom" formControlName="Bedroom">
+                  <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.bhk" formControlName="Bedroom">
                     <label *ngFor="let Bedroom of [1,2,3,4]" class="btn btn-outline-primary mr-2"
                       style="margin-right: 10px;" [btnRadio]="Bedroom" tabindex="0" role="button"
                       name="Bedroom">{{Bedroom}}</label>
@@ -38,7 +38,7 @@
 
                 <div class="form-group col-12" style="margin-top: 10px;">
                   <p>Property Type</p>
-                  <div class="btn-group" btnRadioGroup formControlName="PType" [(ngModel)]="propertyView.PType">
+                  <div class="btn-group" btnRadioGroup formControlName="PType" [(ngModel)]="propertyView.propertyType">
                     <label *ngFor="let ptype of propertyTypes" class="btn btn-outline-primary mr-2"
                       style="margin-right: 10px;" [btnRadio]="ptype" tabindex="0" role="button"
                       name="ptype">{{ptype}}</label>
@@ -50,7 +50,7 @@
 
                 <div class="form-group col-12" style="margin-top: 10px;">
                   <p>Furnishing Type</p>
-                  <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.FType" formControlName="FType">
+                  <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.furnishingType" formControlName="FType">
                     <label *ngFor="let ftype of furnishTypes" class="btn btn-outline-primary mr-2"
                       style="margin-right: 10px;" [btnRadio]="ftype" tabindex="0" role="button"
                       name="Bedroom">{{ftype}}</label>
@@ -63,7 +63,7 @@
                 <div class="form-group col-12">
                   <label>in Building/Society/Project</label>
                   <input type="text" class="form-control" ngModel formControlName="Name"
-                    [(ngModel)]="propertyView.Name">
+                    [(ngModel)]="propertyView.name">
                   <div class="error-block" *ngIf="Name.invalid && (NextClicked || Name.touched)">
                     Please provide building, society or project name
                   </div>
@@ -71,7 +71,7 @@
 
                 <div class="form-group col-12">
                   <label for="city">City</label>
-                  <select class="form-control" [(ngModel)]="propertyView.City" formControlName="City"
+                  <select class="form-control" [(ngModel)]="propertyView.city" formControlName="City"
                     style="margin-top: 10px;">
                     <option value="">--Select City--</option>
                     <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
@@ -91,7 +91,7 @@
                 <div class="form-group col-12">
                   <label *ngIf="SellRent.value==1">Price (in CAD)</label>
                   <label *ngIf="SellRent.value==2">Rent (in CAD)</label>
-                  <input type="text" class="form-control" formControlName="Price" [(ngModel)]="propertyView.Price">
+                  <input type="text" class="form-control" formControlName="Price" [(ngModel)]="propertyView.price">
                   <div class="error-block" *ngIf="Price.invalid && (NextClicked || Price.touched)">
                     Please enter
                     <span *ngIf="SellRent.value==1;else ShowRent">price</span>
@@ -111,7 +111,7 @@
 
                 <div class="form-group col-12">
                   <label>Built Area (in Sqr Feet)</label>
-                  <input type="text" class="form-control" [(ngModel)]="propertyView.BuiltArea"
+                  <input type="text" class="form-control" [(ngModel)]="propertyView.builtArea"
                     formControlName="BuiltArea">
                   <div class="error-block" *ngIf="BuiltArea.invalid && NextClicked">
                     Please enter built up area
