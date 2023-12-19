@@ -33,6 +33,18 @@ namespace WebAPI.Data.Repo
             .Include(p => p.City)
             .Where(p => p.SellRent == sellRent).ToListAsync();
             return properties;
-        }   
+        }
+
+        public async Task<Property> GetPropertyDetailAsync(int id)
+        {
+            var properties = await dataContext.Properties
+            .Include(p => p.PropertyType)
+            .Include(p => p.FurnishingType)
+            .Include(p => p.City)
+            .Where(p => p.Id == id).FirstAsync();
+
+            return properties;
+        }
+
     }
 }

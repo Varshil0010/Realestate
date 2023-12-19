@@ -17,7 +17,7 @@ property = new Property();
 galleryOptions: NgxGalleryOptions[];
 galleryImages: NgxGalleryImage[];
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private housingService: HousingService) { }
 
@@ -28,6 +28,8 @@ galleryImages: NgxGalleryImage[];
     //     this.property = data['prp']
     //   }
     // )
+
+    this.property.age = this.housingService.getPropertyAge(this.property.estPossessionOn);
 
     this.route.params.subscribe(
       (params) => {

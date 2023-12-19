@@ -6,6 +6,7 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
 
 @Component({
   selector: 'app-add-property',
@@ -19,8 +20,8 @@ addPropertyForm: FormGroup;
 NextClicked: boolean;
 property = new Property();
 
-propertyTypes: Array<string> =['House', 'Appartment', 'Duplex']
-furnishTypes: Array<string> =['Fully', 'Semi', 'Unfurnished']
+propertyTypes: Ikeyvaluepair[];
+furnishTypes: Ikeyvaluepair[];
 cityList: any[];
 
   propertyView: IPropertyBase = {
@@ -33,7 +34,8 @@ cityList: any[];
     bhk: null!,
     builtArea: null!,
     city: '',
-    readyToMove: null!
+    readyToMove: null!,
+    estPossessionOn: ''
   };
 
   constructor(private fb: FormBuilder, private router: Router,
@@ -44,6 +46,14 @@ cityList: any[];
     this.housingService.getAllCities().subscribe(data =>{
       this.cityList = data;
       console.log(data);
+    });
+
+    this.housingService.getPropertyTypes().subscribe(data => {
+      this.propertyTypes = data;
+    });
+
+    this.housingService.getFurnishingTypes().subscribe(data =>{
+      this.furnishTypes = data;
     })
   }
 
@@ -221,21 +231,20 @@ cityList: any[];
     this.property.city = this.City.value;
     this.property.furnishingType = this.FType.value;
     this.property.price = this.Price.value;
-    this.property.Security = this.Security.value;
-    this.property.Maintenance = this.Maintenance.value;
+    this.property.security = this.Security.value;
+    this.property.maintenance = this.Maintenance.value;
     this.property.builtArea = this.BuiltArea.value;
-    this.property.CarpetArea = this.CarpetArea.value;
-    this.property.FloorNo = this.FloorNo.value;
-    this.property.TotalFloor = this.TotalFloor.value;
-    this.property.Address = this.Address.value;
-    this.property.Address2 = this.LandMark.value;
+    this.property.carpetArea = this.CarpetArea.value;
+    this.property.floorNo = this.FloorNo.value;
+    this.property.totalFloor = this.TotalFloor.value;
+    this.property.address = this.Address.value;
+    this.property.address2 = this.LandMark.value;
     this.property.readyToMove = this.RTM.value;
-    this.property.AOP = this.AOP.value;
-    this.property.Gated = this.Gated.value;
-    this.property.MainEntrance = this.MainEntrance.value;
-    this.property.Possession = this.PossessionOn.value;
-    this.property.Description = this.Description.value;
-    this.property.PostedOn = new Date().toString();
+    this.property.age = this.AOP.value;
+    this.property.gated = this.Gated.value;
+    this.property.mainEntrance = this.MainEntrance.value;
+    this.property.estPossessionOn = this.PossessionOn.value;
+    this.property.description = this.Description.value;
   }
 
   allTabsValid(): boolean{
