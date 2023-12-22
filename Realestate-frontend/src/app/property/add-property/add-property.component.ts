@@ -85,11 +85,11 @@ cityList: any[];
 
       OtherInfo: this.fb.group({
         RTM: [null, Validators.required],
-        PossessionOn: [null],
+        PossessionOn: [null, Validators.required],
         AOP: [null],
         Gated: [null],
         MainEntrance: [null],
-        Description: [null]
+        Description: [null, Validators.required]
       })
     })
   }
@@ -206,16 +206,20 @@ cityList: any[];
 
     if(this.allTabsValid()){
       this.mapProperty();
-      this.housingService.addProperty(this.property);
-      this.alertify.success("Congrats, your property listed successfully on our website")
-      console.log(this.CreateAddPropertyForm);
+      this.housingService.addProperty(this.property).subscribe(
+        () =>{
+          this.alertify.success("Congrats, your property listed successfully on our website")
+          console.log(this.CreateAddPropertyForm);
 
-      if(this.SellRent.value === '2'){
-        this.router.navigate(['/rent-property'])
-      }
-      else{
-        this.router.navigate(['/'])
-      }
+          if(this.SellRent.value === '2'){
+            this.router.navigate(['/rent-property'])
+          }
+          else{
+            this.router.navigate(['/'])
+          }
+        }
+      );
+
     }
     else{
       this.alertify.error("Please review all form and fill all the required info.")
@@ -226,10 +230,10 @@ cityList: any[];
     this.property.id = this.housingService.newPropID();
     this.property.sellRent = +this.SellRent.value;
     this.property.bhk = this.Bedroom.value;
-    this.property.propertyType = this.PType.value;
+    this.property.propertyTypeId = this.PType.value;
     this.property.name = this.Name.value;
-    this.property.city = this.City.value;
-    this.property.furnishingType = this.FType.value;
+    this.property.cityId = this.City.value;
+    this.property.furnishingTypeId = this.FType.value;
     this.property.price = this.Price.value;
     this.property.security = this.Security.value;
     this.property.maintenance = this.Maintenance.value;
@@ -238,11 +242,7 @@ cityList: any[];
     this.property.floorNo = this.FloorNo.value;
     this.property.totalFloor = this.TotalFloor.value;
     this.property.address = this.Address.value;
-    this.property.address2 = this.LandMark.value;
     this.property.readyToMove = this.RTM.value;
-    this.property.age = this.AOP.value;
-    this.property.gated = this.Gated.value;
-    this.property.mainEntrance = this.MainEntrance.value;
     this.property.estPossessionOn = this.PossessionOn.value;
     this.property.description = this.Description.value;
   }

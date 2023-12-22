@@ -41,6 +41,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("post")]
+        [AllowAnonymous]
         public async Task<IActionResult> AddCity(CityDTO cityDTO)
         {
             var city = new City{

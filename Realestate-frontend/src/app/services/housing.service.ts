@@ -37,15 +37,7 @@ export class HousingService {
   }
 
   addProperty(property: Property) {
-    let newProp = [property];
-
-    //Avoid overwriting property
-    //Add new property in array if newProp already exists in local storage
-    if (localStorage.getItem('newProp')) {
-      newProp = [property,
-        ...JSON.parse(localStorage.getItem('newProp')!)];
-    }
-    localStorage.setItem('newProp', JSON.stringify(newProp));
+    return this.http.post(this.baseurl + '/property/add', property);
   }
 
   newPropID() {

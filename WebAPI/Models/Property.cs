@@ -16,7 +16,7 @@ namespace WebAPI.Models
         public int BuiltArea { get; set; }
         public int CarpetArea { get; set; }
         public string Address { get; set; }
-        public string Address2 { get; set; }
+        // public string Address2 { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
         public int FloorNo { get; set; }    
