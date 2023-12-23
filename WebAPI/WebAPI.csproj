@@ -6,6 +6,7 @@
     <UserSecretsId>05e1de11-44be-46d1-8e6d-a3234ef2a480</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.24.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
