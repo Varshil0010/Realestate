@@ -39,11 +39,12 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("add")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<IActionResult> AddProperty(PropertyDTO propertyDTO)
         {
 
                 var property = mapper.Map<Property>(propertyDTO);
+                var userId = GetUserId();
                 property.PostedBy = 1;
                 uow.propertyRepository.AddProperty(property);
                 await uow.SaveAsync();
