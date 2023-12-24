@@ -7,6 +7,8 @@ namespace WebAPI.Models
 
     public class Photo
     {
+        [Required]
+        public string PublicId { get; set; }
         public int Id { get; set; }
         [Required]
         public string ImageUrl { get; set; }

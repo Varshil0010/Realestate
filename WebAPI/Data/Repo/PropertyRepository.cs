@@ -41,6 +41,16 @@ namespace WebAPI.Data.Repo
             .Include(p => p.PropertyType)
             .Include(p => p.FurnishingType)
             .Include(p => p.City)
+            .Include(p => p.Photos)
+            .Where(p => p.Id == id).FirstAsync();
+
+            return properties;
+        }
+
+        public async Task<Property> GetPropertyIdAsync(int id)
+        {
+            var properties = await dataContext.Properties
+            .Include(p => p.Photos)
             .Where(p => p.Id == id).FirstAsync();
 
             return properties;
