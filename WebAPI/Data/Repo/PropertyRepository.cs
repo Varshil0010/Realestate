@@ -52,7 +52,7 @@ namespace WebAPI.Data.Repo
         {
             var properties = await dataContext.Properties
             .Include(p => p.Photos)
-            .Where(p => p.Id == id).FirstAsync();
+            .Where(p => p.Id == id).FirstOrDefaultAsync();
 
             return properties;
         }

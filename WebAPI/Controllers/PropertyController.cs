@@ -45,12 +45,12 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> AddProperty(PropertyDTO propertyDTO)
         {
 
-                var property = mapper.Map<Property>(propertyDTO);
-                var userId = GetUserId();
-                property.PostedBy = 1;
-                uow.propertyRepository.AddProperty(property);
-                await uow.SaveAsync();
-                return StatusCode(201);
+            var property = mapper.Map<Property>(propertyDTO);
+            var userId = GetUserId();
+            property.PostedBy = 1;
+            uow.propertyRepository.AddProperty(property);
+            await uow.SaveAsync();
+            return StatusCode(201);
 
         }
 
@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> AddPropertyPhoto(IFormFile file, int propId)
         {
             var result = await photoService.UploadPhotoAsync(file);
-            if(result.Error != null)
+            if (result.Error != null)
             {
                 return BadRequest(result.Error.Message);
             }
@@ -71,7 +71,7 @@ namespace WebAPI.Controllers
                 PublicId = result.PublicId
             };
 
-            if(property.Photos.Count == 0)
+            if (property.Photos.Count == 0)
             {
                 photo.IsPrimary = true;
             }
@@ -79,6 +79,41 @@ namespace WebAPI.Controllers
             property.Photos.Add(photo);
             await uow.SaveAsync();
             return StatusCode(201);
+        }
+
+
+        //property/set-primary-photo/1/bbyywefmjcig
+        [HttpPost("set-primary-photo/{propId}/{photoPublicId}")]
+        [Authorize]
+        public async Task<IActionResult> SetPrimaryPhoto(int propId, string photoPublicId)
+        {
+            var userId = GetUserId();
+
+            var property = await uow.propertyRepository.GetPropertyIdAsync(propId);
+
+            if (property == null)
+                return BadRequest("No such proerty or photo exists");
+
+            if (property.PostedBy != userId)
+                return BadRequest("You are not authorised to change the photo");
+
+            var photo = property.Photos.FirstOrDefault(p => p.PublicId == photoPublicId);
+
+            if(photo == null)
+                return BadRequest("No such proerty or photo exists");
+            
+            if(photo.IsPrimary)
+                return BadRequest("This is already a primary photo");
+
+            var currentPrimary = property.Photos.FirstOrDefault(p => p.IsPrimary);
+            if(currentPrimary != null) currentPrimary.IsPrimary = false;
+            photo.IsPrimary = true;
+
+            if(await uow.SaveAsync())
+                    return NoContent();
+
+            return BadRequest("Failed to set primary photo");
+
         }
     }
 }
