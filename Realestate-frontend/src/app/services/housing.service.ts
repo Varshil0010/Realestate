@@ -63,7 +63,7 @@ export class HousingService {
     const m = today.getMonth() - estDate.getMonth();
 
     if (m < 0 || (m === 0 && today.getDate() < estDate.getDate())) {
-      age --;
+      age--;
     }
 
     if (today < estDate) {
@@ -75,5 +75,25 @@ export class HousingService {
     }
 
     return age.toString();
+  }
+
+  setPrimaryPhoto(propertyId: number, propertyPhotoId: string){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+      })
+    };
+
+    return this.http.post(this.baseurl + '/property/set-primary-photo/'+String(propertyId)+'/'+propertyPhotoId, {}, httpOptions)
+  }
+
+  deletePhoto(propertyId: number, propertyPhotoId: string){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+      })
+    };
+
+    return this.http.delete(this.baseurl + '/property/delete-photo/'+String(propertyId)+'/'+propertyPhotoId, httpOptions)
   }
 }

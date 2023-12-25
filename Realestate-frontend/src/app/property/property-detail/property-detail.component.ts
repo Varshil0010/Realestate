@@ -82,4 +82,8 @@ export class PropertyDetailComponent implements OnInit {
     return photoUrls;
   }
 
+  changePrimaryPhoto(mainPhotoUrl: string){
+    this.mainPhotoUrl = mainPhotoUrl;
+  }
+
 }
